@@ -1,7 +1,7 @@
 # sync
 script to sync a robot from a pre-compiled ROS 2 workspace
 
-# Prerequisite
+## Prerequisite
 Make sure you have the prerequisites installed:
 
 ```sh
@@ -17,7 +17,7 @@ wget https://raw.githubusercontent.com/ijnek/sync/main/sync.sh && chmod +x sync.
 
 The script can be downloaded to any directory on your computer.
 
-# Run script
+## Usage
 
 **Make sure you are in the workspace that you intend to sync to the robot.**
 
@@ -35,7 +35,7 @@ where:
 * ``user`` is the username on the remote host you are syncing to
 * ``hostname`` or ``ip-address`` is the hostname or ip address of the remote host you are syncing to
 
-## Example:
+### Example:
 
 To use the script to sync a workspace to a NAO robot with user name ``nao`` and IP address 10.0.0.18:
 ```sh
