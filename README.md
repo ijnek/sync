@@ -19,9 +19,7 @@ The script can be downloaded to any directory on your computer.
 
 ## Usage
 
-**Make sure you are in the workspace that you intend to sync to the robot.**
-
-Then, run:
+**Make sure you are in the workspace that you intend to sync to the robot.** Then run,
 
 ```sh
 /path/to/sync.sh user hostname
