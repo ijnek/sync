@@ -34,15 +34,15 @@ fi
 
 user=$1
 hostname=$2
+port=22
 
 echo "Checking if $user@$hostname is up"
-ssh -q $user@$hostname -o ConnectTimeout=1 exit
+ssh -p $port -q $user@$hostname -o ConnectTimeout=1 exit
 if [ $? -ne 0 ]; then
   echo "Error: $user@$hostname is down. Please make sure that you can access the robot via 'ssh $user@$hostname'."
   exit
 fi
-
-echo "Syncing files to $1@$2"
+echo "$user@$hostname is up"
 
 # Create /tmp/install_dependencies.sh
 echo "Creating /tmp/install_dependencies.sh"
@@ -51,14 +51,14 @@ chmod +x /tmp/install_dependencies.sh
 
 # Copy the install_dependencies.sh to the robot
 echo "Copying install_dependencies.sh to the robot"
-rsync --progress /tmp/install_dependencies.sh $1@$2:/tmp/install_dependencies.sh
+rsync -e "ssh -p $port" --progress /tmp/install_dependencies.sh $1@$2:/tmp/install_dependencies.sh
 
 # Copy the install/ directory to the robot
-remote_install_dir=/"$(basename $(pwd))"
+remote_install_dir='~/'$(basename $(pwd))
 echo "Copying contents of install/ to $1@$2:$remote_install_dir"
-rsync --progress -r install/ $1@$2:$remote_install_dir
+rsync -e "ssh -p $port" --progress -r install $1@$2:$remote_install_dir
 
 echo "Installing dependencies on the robot"
-ssh $1@$2 "sudo /tmp/install_dependencies.sh"
+ssh -p $port $1@$2 "sudo /tmp/install_dependencies.sh"
 
 echo "Syncing done! Run 'source $remote_install_dir/setup.bash' on the robot."
