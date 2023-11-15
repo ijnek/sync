@@ -61,4 +61,4 @@ rsync -e "ssh -p $port" --progress -r install $1@$2:$remote_install_dir
 echo "Installing dependencies on the robot"
 ssh -p $port $1@$2 "sudo /tmp/install_dependencies.sh"
 
-echo "Syncing done! Run 'source $remote_install_dir/setup.bash' on the robot."
+echo "Syncing done! Run 'source $remote_install_dir/install/setup.bash' on the robot."
