@@ -46,7 +46,7 @@ echo "$user@$hostname is up"
 
 # Create /tmp/install_dependencies.sh
 echo "Creating /tmp/install_dependencies.sh"
-AMENT_PREFIX_PATH="none" bash -c "rosdep install --default-yes --ignore-src -r --simulate --reinstall --as-root apt:false -n --from-paths src > /tmp/install_dependencies.sh"
+AMENT_PREFIX_PATH="none" bash -c "rosdep install --dependency-types=exec --default-yes --ignore-src -r --simulate --reinstall --as-root apt:false -n --from-paths src > /tmp/install_dependencies.sh"
 chmod +x /tmp/install_dependencies.sh
 
 # Copy the install_dependencies.sh to the robot
